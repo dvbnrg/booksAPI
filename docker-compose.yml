@@ -1,0 +1,30 @@
+version: '3'
+services:
+  db:
+    build:
+      context: .
+      dockerfile: db/Dockerfile
+    restart: always
+    ports: 
+      - "3306:3306"
+    expose:
+      - "3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: supersecret
+      MYSQL_DATABASE: book
+
+  api:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    environment:
+      DB_HOST: db
+      USER: root
+      MYSQL_ROOT_PASSWORD: supersecret
+      DB_NAME: book
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/go/src/github.com/dvbnrg/booksAPI
+    depends_on:
+      - db
