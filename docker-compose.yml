@@ -18,10 +18,10 @@ services:
       context: .
       dockerfile: api/Dockerfile
     environment:
-      HOST: db:database
-      USER: root
-      PASSWORD: supersecret
-      DATABASE: book
+      MYSQL_HOST: db:database
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: supersecret
+      MYSQL_DATABASE: book
     ports:
       - "8080:8080"
     volumes:
