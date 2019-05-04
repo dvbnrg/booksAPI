@@ -31,8 +31,8 @@ func main() {
 
 	db, err = gorm.Open(
 		"db",
-		"host="+os.Getenv("DB_HOST")+"user="+os.Getenv("DB_USER")+
-			"dbname="+os.Getenv("DB_NAME")+" sslmode=disable password="+os.Getenv("DB_PASSWORD"))
+		"host="+os.Getenv("HOST")+"user="+os.Getenv("USER")+
+			"dbname="+os.Getenv("NAME")+" sslmode=disable password="+os.Getenv("PASSWORD"))
 
 	if err != nil {
 		log.Fatal("DB Connection Error")
