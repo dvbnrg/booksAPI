@@ -144,7 +144,7 @@ func UpdateBook(w http.ResponseWriter, r *http.Request) {
 
 		err = json.Unmarshal(body, &book)
 
-		query := fmt.Sprintf("INSERT INTO book.books VALUES (%d,%s,%s,%s,%s,%d,%t)", book.ID, book.Title, book.Author, book.Publisher, book.PublishDate, book.Rating, book.Status)
+		query := fmt.Sprintf("INSERT INTO books VALUES (%d,%s,%s,%s,%s,%d,%t);", book.ID, book.Title, book.Author, book.Publisher, book.PublishDate, book.Rating, book.Status)
 
 		results, err := db.Prepare(query)
 		if err != nil {
