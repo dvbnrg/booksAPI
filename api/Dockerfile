@@ -1,6 +1,6 @@
 FROM golang
 
-RUN go get -u -v github.com/golang/dep/cmd/dep
+# RUN go get -u -v github.com/golang/dep/cmd/dep
 
 WORKDIR $GOPATH/src/github.com/dvbnrg/booksAPI
 
