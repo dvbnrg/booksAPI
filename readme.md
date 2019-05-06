@@ -1,6 +1,14 @@
 Using Go as your language, create a CRUD API to manage a list of Books, fulfilling the following requirements:
 
- 
+
+To get started:
+    - run 'docker-compose up'
+    - load postman test collection into Postman to see the API in action
+
+TODOs:
+    -need to finish UPDATE impl
+    -need to finish DELETE impl
+
 
 1. Books should have the following Attributes:
 
@@ -33,3 +41,4 @@ Using Go as your language, create a CRUD API to manage a list of Books, fulfilli
  
 
 5. The app should be stood up in Docker, and client code (such as cURL requests and your unit tests) should be executed on the host machine, against the containerized app.
+
