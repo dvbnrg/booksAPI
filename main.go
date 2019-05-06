@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -36,6 +35,7 @@ func main() {
 	router.HandleFunc("/getbooks", GetBooks)
 	router.HandleFunc("/getbook/{id}", GetBook)
 	router.HandleFunc("/updatebook", UpdateBook)
+	router.HandleFunc("/deletebook", DeleteBook)
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
@@ -124,6 +124,7 @@ func GetBook(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(200)
 }
 
+// TODO fix Update
 // UpdateBook takes in a json payload and will overwrite any existing entry
 func UpdateBook(w http.ResponseWriter, r *http.Request) {
 
@@ -131,31 +132,36 @@ func UpdateBook(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method == "POST" {
 
-		read, err := r.GetBody()
+		// ID := r.FormValue("id")
+		// Title := r.FormValue("title")
+		// Author := r.FormValue("author")
+		// Publisher := r.FormValue("publisher")
+		// PublishDate := r.FormValue("publishdate")
+		// Rating := r.FormValue("rating")
+		// Status := r.FormValue("checkedin")
 
-		if err != nil {
-			panic(err)
-			w.WriteHeader(418)
-		}
+		book := mux.Vars(r)
 
-		body, err := ioutil.ReadAll(read)
+		insert := fmt.Sprintf("UPDATE books SET id=?, title=?, author=?, publisher=?, publishdate=?, rating=?, checkedin=?")
 
-		book := Book{}
+		results, err := db.Prepare(insert)
+		results.Exec(book["id"], book["title"], book["author"], book["publisher"], book["publishdate"], book["rating"], book["checkedin"])
 
-		err = json.Unmarshal(body, &book)
-
-		query := fmt.Sprintf("INSERT INTO books VALUES (%d,%s,%s,%s,%s,%d,%t);", book.ID, book.Title, book.Author, book.Publisher, book.PublishDate, book.Rating, book.Status)
-
-		results, err := db.Prepare(query)
 		if err != nil {
 			panic(err)
 			w.WriteHeader(404)
 		}
-		results.Exec()
-		log.Printf("INSERT for %v Successful!", book)
+
+		log.Printf("UPDATE for %v Successful!", book["id"])
 	}
 
 	defer db.Close()
 	w.WriteHeader(200)
+
+}
+
+// TODO impl Delete
+// DeleteBook finds a book by ID and then removes the entry from the DB
+func DeleteBook(w http.ResponseWriter, r *http.Request) {
 
 }

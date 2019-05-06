@@ -1,0 +1,42 @@
+{
+	"info": {
+		"_postman_id": "37ab60f6-f27d-43bb-a2f5-412a7241d528",
+		"name": "booksAPI",
+		"description": "Books API is a standard CRUD API operating on a small MySQL db representing a bookshelf",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getbooks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				},
+				"description": "returns all books listed in DB"
+			},
+			"response": []
+		},
+		{
+			"name": "getbook/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				},
+				"description": "retrieves a book from the database with matching ID"
+			},
+			"response": []
+		}
+	]
+}
