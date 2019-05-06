@@ -4,6 +4,7 @@ Using Go as your language, create a CRUD API to manage a list of Books, fulfilli
 To get started:
     - run 'docker-compose up'
     - load postman test collection into Postman to see the API in action
+    - Postman URL should point to localhost:8080/
 
 TODOs:
     -need to finish UPDATE impl
