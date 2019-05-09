@@ -1,5 +1,6 @@
 Using Go as your language, create a CRUD API to manage a list of Books, fulfilling the following requirements:
 
+WIP
 
 To get started:
     - run 'docker-compose up'
